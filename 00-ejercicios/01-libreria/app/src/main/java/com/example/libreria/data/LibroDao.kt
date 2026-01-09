@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface LibroDao {
 
-    @Query("SELECT * from libro ORDER BY name ASC")
+    @Query("SELECT * from libro ORDER BY titulo ASC")
     fun getAllLibros(): Flow<List<Libro>>
 
     @Query("SELECT * from libro WHERE id = :id")

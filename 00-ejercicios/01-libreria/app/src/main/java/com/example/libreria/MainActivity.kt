@@ -11,7 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.libreria.ui.theme.LibreriaTheme
+import com.example.libreria.ventanas.VentanaEditar
+import com.example.libreria.ventanas.VentanaVer
+import com.example.libreria.ventanas.VentanaCrear
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LibreriaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    gestorVentanas(Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +35,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun gestorVentanas(modifier: Modifier) {
+    val libreriaViewModel: LibreriaViewModel = viewModel()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LibreriaTheme {
-        Greeting("Android")
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "inicio") {
+        composable("ver") { VentanaVer(navController, modifier, libreriaViewModel) }
+        composable("editar") { VentanaEditar(navController, modifier, libreriaViewModel ) }
+        composable("crear") { VentanaCrear(navController, modifier, libreriaViewModel) }
+
     }
+
+
 }
