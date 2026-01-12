@@ -36,7 +36,7 @@ Una ventana especifica en la que se muestra un formulario para introducir inform
 ### READ (VentanaVer)
 Sirve para realizar búsquedas de libros. Se puede mostrar un listado completo de los libros o este puede ser filtrado por contiene en el nombre o Autor.
 
-- Por defecto la ventana va a cargar los primeros 10 libros por orden alfabético.
+- Por defecto la ventana va a cargar todos los libros por orden alfabético.
 - Hay **dos textField** uno para el Autor otro para el titulo.
 - Hay un **botón aplicar filtros** para que se apliquen los filtros solo si han sido completados.
 - si se aplican los filtros y el textField está vacio se tiene que mostrar la lista por defecto de la ventana.
