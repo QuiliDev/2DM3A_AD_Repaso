@@ -13,6 +13,8 @@ La tabla **Libro** deberá contener los siguientes campos:
 - **01-libreria_1_plantilla**: Sirve cómo punto de partida para el desarrollo, tiene todas las ventanas desarrolladas porque en el ejercico se trata de crear la estructura de datos.
 - **01-libreria_1_resultado**: Se puede ver el desarrollo completo, pare ver cómo debería de ser el resultado del ejercicio.
 
+El ejercicio tiene el resultado, en un **examen** sería el mismo código pero **eliminando el ViewModel y el package entero de data**.
+
 ---
 
 ## Operaciones CRUD
