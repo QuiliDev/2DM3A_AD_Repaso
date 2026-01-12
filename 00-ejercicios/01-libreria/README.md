@@ -1,4 +1,4 @@
-# 01-libreria_1
+# 01-libreria
 
 Se debe diseñar y crear una base de datos para una librería. La base de datos contará con una única tabla llamada Libro, la cual almacenará la información básica de los libros disponibles.
 
@@ -8,10 +8,6 @@ La tabla **Libro** deberá contener los siguientes campos:
 - *año de publicación*: año en el que el libro fue publicado, de tipo entero. 
 
 ---
-
-## Archivos
-- **01-libreria_1_plantilla**: Sirve cómo punto de partida para el desarrollo, tiene todas las ventanas desarrolladas porque en el ejercico se trata de crear la estructura de datos.
-- **01-libreria_1_resultado**: Se puede ver el desarrollo completo, pare ver cómo debería de ser el resultado del ejercicio.
 
 El ejercicio tiene el resultado, en un **examen** sería el mismo código pero **eliminando el ViewModel y el package entero de data**.
 
@@ -42,11 +38,11 @@ Sirve para realizar búsquedas de libros. Se puede mostrar un listado completo d
 - si se aplican los filtros y el textField está vacio se tiene que mostrar la lista por defecto de la ventana.
 
 ### UPDATE (VentanaEditar)
-- La lista de VentanaVer contien un boton IconButton editar ✏️.
+- La lista de VentanaVer contiene un boton IconButton editar ✏️.
 - En la ventana editar se peude ver el mismo formulario para crear libros.
 - Hay dos opcciones rechazar y aceptar, en caso de haber aceptado los cambios, se actualiza la base de datos.
 
 ### DELETE (VentanaVer)
-- La lista de VentanaVer contien un boton IconButton eliminar 🗑️. 
+- La lista de VentanaVer contiene un boton IconButton eliminar 🗑️. 
 - Al pusarse sale un aviso, ¿desea eliminar el libro? 
 - Al aceptar se recarga la lista y ese libro ha sido eliminado de la base de datos.
