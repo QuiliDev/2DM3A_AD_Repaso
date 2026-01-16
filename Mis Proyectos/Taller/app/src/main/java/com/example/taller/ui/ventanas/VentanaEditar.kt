@@ -5,41 +5,56 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.taller.entity.Coche
-import com.example.taller.ui.components.CocheForm
+import com.example.taller.ui.components.ClienteForm
 import com.example.taller.ui.shared.CocheViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun VentanaEditar(navController: NavController, modifier: Modifier, viewModel: CocheViewModel, id: Int) {
+fun VentanaEditar(
+    navController: NavController,
+    modifier: Modifier,
+    viewModel: CocheViewModel,
+    id: Int
+) {
     val scope = rememberCoroutineScope()
 
+    // CARGA DE DATOS AL INICIAR
     LaunchedEffect(id) {
-        viewModel.getCoche(id).collect { coche ->
-            coche?.let { viewModel.cargarCoche(it) }
+        viewModel.getClientePorId(id).collect { cliente ->
+            cliente?.let {
+                viewModel.nombreCliente = it.nombre
+                viewModel.apellidosCliente = it.apellidos
+                viewModel.dniCliente = it.dni
+                viewModel.telefonoCliente = it.telefono
+                viewModel.emailCliente = it.email
+                viewModel.direccionCliente = it.direccion
+            }
         }
     }
 
-    CocheForm(
-        labelVentana = "Editar Coche Existente",
-        name = viewModel.nameState,
-        price = viewModel.priceState,
-        quantity = viewModel.quantityState,
-        onNameChange = { viewModel.onNameChange(it) },
-        onPriceChange = { viewModel.onPriceChange(it) },
-        onQuantityChange = { viewModel.onQuantityChange(it) },
+    // REUTILIZACIÓN DEL FORMULARIO
+    ClienteForm(
+        labelVentana = "Editar Datos del Cliente",
+        nombre = viewModel.nombreCliente,
+        apellidos = viewModel.apellidosCliente,
+        dni = viewModel.dniCliente,
+        telefono = viewModel.telefonoCliente,
+        email = viewModel.emailCliente,
+        direccion = viewModel.direccionCliente,
+        onNombreChange = { viewModel.nombreCliente = it },
+        onApellidosChange = { viewModel.apellidosCliente = it },
+        onDniChange = { viewModel.dniCliente = it },
+        onTelefonoChange = { viewModel.telefonoCliente = it },
+        onEmailChange = { viewModel.emailCliente = it },
+        onDireccionChange = { viewModel.direccionCliente = it },
         onAceptarClick = {
             scope.launch {
-                val cocheEditado = Coche(
-                    id = id,
-                    name = viewModel.nameState,
-                    price = viewModel.priceState.toDoubleOrNull() ?: 0.0,
-                    quantity = viewModel.quantityState.toIntOrNull() ?: 0
-                )
-                viewModel.update(cocheEditado)
+                viewModel.actualizarCliente(id)
                 navController.popBackStack()
             }
         },
-        onCancelarClick = { navController.popBackStack() }
+        onCancelarClick = {
+            navController.popBackStack()
+        }
     )
 }

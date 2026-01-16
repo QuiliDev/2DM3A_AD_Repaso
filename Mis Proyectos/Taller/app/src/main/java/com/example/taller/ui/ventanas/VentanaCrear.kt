@@ -1,27 +1,32 @@
 package com.example.taller.ui.ventanas
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.taller.ui.components.CocheForm
+import com.example.taller.ui.components.ClienteForm
 import com.example.taller.ui.shared.CocheViewModel
 
 @Composable
 fun VentanaCrear(navController: NavController, modifier: Modifier, viewModel: CocheViewModel) {
-    CocheForm(
-        labelVentana = "Añadir Nuevo Coche",
-        name = viewModel.nameState,
-        price = viewModel.priceState,
-        quantity = viewModel.quantityState,
-        onNameChange = { viewModel.onNameChange(it) },
-        onPriceChange = { viewModel.onPriceChange(it) },
-        onQuantityChange = { viewModel.onQuantityChange(it) },
+    ClienteForm(
+        labelVentana = "Añadir Nuevo Cliente",
+        nombre = viewModel.nombreCliente,
+        apellidos = viewModel.apellidosCliente,
+        dni = viewModel.dniCliente,
+        telefono = viewModel.telefonoCliente,
+        email = viewModel.emailCliente,
+        direccion = viewModel.direccionCliente,
+        onNombreChange = { viewModel.nombreCliente = it },
+        onApellidosChange = { viewModel.apellidosCliente = it },
+        onDniChange = { viewModel.dniCliente = it },
+        onTelefonoChange = { viewModel.telefonoCliente = it },
+        onEmailChange = { viewModel.emailCliente = it },
+        onDireccionChange = { viewModel.direccionCliente = it },
         onAceptarClick = {
-            viewModel.insertCoche(
-                viewModel.nameState,
-                viewModel.priceState.toDoubleOrNull() ?: 0.0,
-                viewModel.quantityState.toIntOrNull() ?: 0
-            )
+            viewModel.insertarCliente()
             navController.popBackStack()
         },
         onCancelarClick = { navController.popBackStack() }
